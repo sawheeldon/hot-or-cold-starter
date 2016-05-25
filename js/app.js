@@ -7,14 +7,14 @@ var randomNumber = generateRandomNumber (1,100);
 
 //function that validates the number inputted
 
-function numberInput(){
+function val(){
 
 }
 
 //function show whether hot or cold
 
-function hotOrCold(){
-
+function playGame(userGuess, randomNumber){
+var difference = Math.abs(userGuess - randomNumber);
 }
 
 //function guess history
