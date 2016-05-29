@@ -2,6 +2,7 @@
 
 var randomNumber = generateRandomNumber(1, 100);
 var counter = 0;
+var oldGuess = 0;
 //STEP TWO - functions declarations
 
 // Function to generate the random number
@@ -33,10 +34,15 @@ function validateInput(guessedNumber) {
     }
 
     if (userInputCorrectFlag = true) {
+        var newGuess = guessedNumber;
         playGame(guessedNumber);
         guessHistory(guessedNumber);
         counter++;
         guessCounter(counter);
+        if (oldGuess > 0) {
+            relativeFeedback(randomNumber, oldGuess, newGuess);
+        }
+        oldGuess = newGuess;
     }
 }
 
@@ -70,11 +76,23 @@ function guessHistory(guessedNumber) {
 function guessCounter(counter) {
     $('#count').text(counter);
 }
-
+//feedback
+function relativeFeedback(randomNumber, oldGuess, newGuess) {
+    alert("Working");
+    var oldDiff = Math.abs(parseInt(randomNumber) - parseInt(oldGuess));
+    var newDiff = Math.abs(parseInt(randomNumber) - parseInt(newGuess));
+    if (newDiff > oldDiff) {
+        $('#relative-feedback').text('You are colder than the last guess!');
+    } else if (newDiff === oldDiff) {
+        $('#relative-feedback').text('You are as far as your previous guess!');
+    } else {
+        $('#relative-feedback').text('You are hotter than the last guess!');
+    }
+}
 //function new game
 
 function newGame() {
-
+    document.location.reload(true);
 }
 
 //STEP THREE - function usage
